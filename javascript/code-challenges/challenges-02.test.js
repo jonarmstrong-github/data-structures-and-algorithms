@@ -104,25 +104,34 @@ const forEachTwoToThe = (arr) => {
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 6
 
-Write a function named mapTwoToThe that produces the same output as your forLoopTwoToThe function from challenge 4 and your forEachTwoToThe function from challenge 5, but uses map instead of a for loop or forEach.
+Write a function named mapTwoToThe that produces the same output as your forLoopTwoToThe function from challenge 4 and your forEachTwoToThe function from challenge 5, but uses 
+
+map instead of a for loop or forEach.
 ------------------------------------------------------------------------------------------------ */
 
 
 //STUCK ON THIS ONE//
+// const mapTwoToThe = (arr) => {
+//   // Solution code here...
+//   let map1 = new Map();
+//   let newArr = [];
+//   let index = 0;
+//   for (const arrValue of arr) {
+//     let temp = Math.pow(2, arrValue);  //takes the number 2 and uses the value as the exponent
+//     map1.set(index, temp);
+//     index = index + 1;
+//   };
+//   for (const mapValue of map1) {
+//     newArr.push(mapValue);              //the new value is pushed into the new array
+//   };
+//   return newArr;                //newArr must be returned
+// };
+
+//from class !!!!
+//I now feel like I've used map wrong in every challenge and will have to go back and assess and refactor my code.
+
 const mapTwoToThe = (arr) => {
-  // Solution code here...
-  let map1 = new Map();
-  let newArr = [];
-  let index = 0;
-  for (const arrValue of arr) {
-    let temp = Math.pow(2, arrValue);  //takes the number 2 and uses the value as the exponent
-    map1.set(index, temp);
-    index = index + 1;
-  };
-  for (const mapValue of map1) {
-    newArr.push(mapValue);              //the new value is pushed into the new array
-  };
-  return newArr;                //newArr must be returned
+  return arr.map(temp => Math.pow(2, temp))
 };
 
 /* ------------------------------------------------------------------------------------------------
