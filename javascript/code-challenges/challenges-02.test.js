@@ -24,22 +24,27 @@ CHALLENGE 2
 Write a function named addOne that, given an array of numbers, uses map to return a new array with each value simply incremented by 1. 
 ------------------------------------------------------------------------------------------------ */
 
-
-//why do I need a
-const addOne = (arr) => {           //take in an array of numbers
-  // Solution code here...
-  let map1 = new Map();             //making a new map to work with
-  let newArr = [];                  //making a new array to work with
-  arr.forEach((value, index) => {   //for each index in the array a value is pulled
-    let temp = value + 1;           //temporary storage is created and is filled with the value from the array + 1.
-    map1.set(index, temp);  // I think I'm naming parameters that represent the key and the value in my map?  ...and that the arguments are coming in with each loop.  The index should match the location of my array.
-  });
-  map1.forEach((value) => {  // I think I'm naming a variable for the values in the map to populate as forEach runs through the map.  I don't think this command returns the index.
-    newArr.push(value);       //the new value is pushed into the new array
-  }
-);
-return newArr;                //newArr must be returned
+//ARROWS AND MAPS ALLOWED SOOOO MANY THINGS TO HAPPEN AT ONCE! WOW!!
+const addOne = (arr) => {
+// Solution code here...
+  return arr.map(temp => (temp + 1));
 };
+
+//why do I need a map?
+// const addOne = (arr) => {           //take in an array of numbers
+//   // Solution code here...
+//   let map1 = new Map();             //making a new map to work with
+//   let newArr = [];                  //making a new array to work with
+//   arr.forEach((value, index) => {   //for each index in the array a value is pulled
+//     let temp = value + 1;           //temporary storage is created and is filled with the value from the array + 1.
+//     map1.set(index, temp);  // I think I'm naming parameters that represent the key and the value in my map?  ...and that the arguments are coming in with each loop.  The index should match the location of my array.
+//   });
+//   map1.forEach((value) => {  // I think I'm naming a variable for the values in the map to populate as forEach runs through the map.  I don't think this command returns the index.
+//     newArr.push(value);       //the new value is pushed into the new array
+//   }
+// );
+// return newArr;                //newArr must be returned
+// };
 
 
 /* ------------------------------------------------------------------------------------------------
@@ -50,19 +55,23 @@ Write a function named addQuestion that, given an array of strings, uses map to 
 
 const addQuestion = (arr) => {  //given an array of strings
   // Solution code here...
-  let map1 = new Map();             //making a new map to work with
-  let newArr = [];                  //making a new array to work with
-  arr.forEach((value, index) => {   //for each index in the array a value is pulled
-    let temp = (value + '?');
-    map1.set(index, temp);  // I think I'm naming parameters that represent the key and the value in my map?  ...and that the arguments are coming in with each loop.  The index should match the location of my array.
-  });
-  map1.forEach((value) => {  // I think I'm naming a variable for the values in the map to populate as forEach runs through the map.  I don't think this command returns the index.
-    newArr.push(value);       //the new value is pushed into the new array
-  }
-);
-  
-  return newArr; //returns a new array
+  return arr.map(temp => (temp + '?'))
 };
+
+//   HOW I ORIGINALLY CODED THIS
+//   let map1 = new Map();             //making a new map to work with
+//   let newArr = [];                  //making a new array to work with
+//   arr.forEach((value, index) => {   //for each index in the array a value is pulled
+//     let temp = (value + '?');
+//     map1.set(index, temp);  // I think I'm naming parameters that represent the key and the value in my map?  ...and that the arguments are coming in with each loop.  The index should match the location of my array.
+//   });
+//   map1.forEach((value) => {  // I think I'm naming a variable for the values in the map to populate as forEach runs through the map.  I don't think this command returns the index.
+//     newArr.push(value);       //the new value is pushed into the new array
+//   }
+// );
+  
+//   return newArr; //returns a new array
+// };
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 4
@@ -76,14 +85,18 @@ For example, twoToThe([1,2,3]) returns [2,4,8] because 2 ^ 1 = 2, 2 ^ 2 = 4, and
 
 const forLoopTwoToThe = (arr) => {
   // Solution code here...
+
+  //HOW I ORIGINALLY CODED THIS ... IS THIS FOLLOWING THE INSTRUCTIONS?
   let newArr = [];                  //making a new array to work with
   for (const value of arr) {        //for in did not work 
-    // let temp = (2 ** value);     //this also works
     let temp = Math.pow(2, value);  //takes the number 2 and uses the value as the exponent
     newArr.push(temp);              //the new value is pushed into the new array
-  }
+  };
   return newArr;                    //returns a new array
-};
+  
+//THE REFACTORED CODE
+//   return arr.map(temp => Math.pow(2, temp))
+ };
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 5
@@ -93,6 +106,8 @@ Write a function named forEachTwoToThe that produces the same output as your for
 
 const forEachTwoToThe = (arr) => {
   // Solution code here...
+
+//HOW I ORIGINALLY CODED THIS
   let newArr = [];                  //making a new array to work with
   arr.forEach(value => {              //for each index in the array a value is pulled
     let temp = Math.pow(2, value);  //takes the number 2 and uses the value as the 
@@ -100,6 +115,11 @@ const forEachTwoToThe = (arr) => {
   });
   return newArr;                    //returns a new array
 };
+
+// // THE REFACTORED WAY
+// return arr.map(temp => Math.pow(2, temp))
+// };
+
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 6
