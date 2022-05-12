@@ -63,6 +63,7 @@ For example, oddValues([1,2,3]) returns [1,3].
 
 const oddValues = (arr) => {
   // Solution code here...
+  return arr.filter(value  => (value % 2));
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -73,9 +74,28 @@ Write a function named notInFirstArray that, given two arrays as input, uses fil
 For example, notInFirstArray([1,2,3], [1,2,3,4]) returns [4].
 ------------------------------------------------------------------------------------------------ */
 
+
+//WIP
 const notInFirstArray = (forbiddenValues, arr) => {
   // Solution code here...
+  let permittedValues = arr.filter(value => !forbiddenValues.includes(value));
+  return permittedValues;
 };
+  
+  
+  //return arr.filter(value => value.includes(forbiddenValues));
+
+  // ) {
+  //   for (let i = 0; i < forbiddenValues.length; i++) {
+  //     if (forbiddenValues[i] != value) {
+        
+  //     }
+  //     let temp = value;
+      
+  //   }
+  // }
+
+
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 6 - Stretch Goal
