@@ -1,5 +1,9 @@
 'use strict';
 
+//WHY CAN I GET sort TO WORK HERE.. AND WITH NUMBERS ON REPLIT AND CODEPEN.. BUT NOT FOR STRINGS ON REPLIT AND CODEPEN???
+
+const { getLinterInternalSlots } = require("eslint/lib/linter/linter");
+
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 1 - Review
 
@@ -47,6 +51,7 @@ For example: 'Cat' would come before 'apple'
 // sort is performed in place
 const sortNames = (arr) => {
   // Solution code here...
+
   return arr.sort((a, b) => {
     if (a < b) {  //a is less than b by some ordering criterion
       console.log(a < b);  //truthy
@@ -55,6 +60,20 @@ const sortNames = (arr) => {
       return;
     }
   });
+
+//   return arr.sort(); //SORTS BY UNICODE VALUES.  C=67 AND a=97
+
+  //NOPE
+  //((a,b) => {a < b ? 1 :-1;})
+
+  //NOPE
+  // let tempArrary = [];
+  // tempArrary.push(arr.sort);
+  // return tempArrary;
+
+  //return arr.sort((a, b) => {
+  //return a.toUpperCase() < b.toUpperCase() ? 1 : -1;  //WOULD LEVEL THE UNICODE SORTING CASE
+
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -67,11 +86,14 @@ HINT: Beware... JS default is "Lexical" ordering.
 
 const sortNumbers = (arr) => {
   // Solution code here...
+
+  return arr.sort((a, b) => a - b);  //THIS WORKS FOR NUMBERS ON REPLIT AND CODEPEN BUT NOT FOR STRINGS....  WHY?
+
   // let tempArrary = []
   // arr.sort((a, b) => {
-  return arr.sort((a, b) => a - b);
-  // tempArrary.push(a)
-  // }
+  //   if (!(a % 2)) {
+  //     tempArrary.push(a)
+  //   }
   // });
   // return tempArrary;
 };
@@ -89,7 +111,13 @@ HINT: Do it with a custom sort callback, not with using `.reverse()`. ;)
 
 const sortBackwards = (arr) => {
   // Solution code here...
-  return arr.sort((a, b) => b - a);
+ 
+  // let tempArrary = [];
+  // tempArrary = arr.sort((a,b) => b - a);  //B - A = BACKWARDS
+  // tempArrary.push(arr.sort((a,b) => b - a));
+  // return tempArrary;
+
+  return arr.sort((a,b) => b - a);  //REFACTORED
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -104,6 +132,7 @@ For example, ['Alphabet', 'Zebra', 'alphabet', 'carrot'] is correctly sorted.
 
 const alphabetize = (arr) => {
   // Solution code here...
+
   //copied code from Challenge 2 but reversed the operand
   return arr.sort((a, b) => {
     if (a < b) {
@@ -112,6 +141,9 @@ const alphabetize = (arr) => {
       return;
     }
   });
+  
+  // return arr.sort();  //SORTS BY UNICODE VALUES BY DEFAULT SO I JUST COPIED AND PASTED THIS FROM CHALLENGE 2.  WHAT AM I MISSING?  WHAT THAT ALL I WAS SUPPOSED TO DO?
+
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -127,17 +159,24 @@ Here is an example of the input:
 ];
 ------------------------------------------------------------------------------------------------ */
 
-const sortByPrice = (arr) => {
+const sortByPrice = (arr) => {  //RECEIVED AN ARRAY OF OBJECTS
   // Solution code here...
   // console.log(`This is arr.`, arr);
   // console.log(`This is arr[0].`, arr[0]);
   // console.log(`This is arr[0].price.`, arr[0].price);
-  return arr.sort((a, b) => a.price - b.price);
+  return arr.sort((a, b) => a.price - b.price);  //RECEIVES TWO OBJECTS FROM THE ARRAY
   //sort cycles through indexes.
   //a - b lowest to highest
   //b - a highest to lowest
   // if a.price is > b.price sort b before a
   //console.log(arr[0].price - arr[1].price);  //truthy
+
+  //return arr.sort((a, b) => a.price - b.price);  //RECEIVES TWO OBJECTS FROM THE ARRAY
+  // return a.price - b.price;  //RETURNS TRUTHY OR FALSY
+  // });
+  // return arr.sort((a, b) => a.price - b.price);
+  // return a.price < b.price ? -1 : 1;  ///* Return -1 for sort key when item field value is truthy bubbles that item to top of the sorted array. Return 1 pushes item to bottom of sorted array */
+
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -213,10 +252,12 @@ const sortPeopleBetter = (arr) => {
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 12 - Stretch Goal
 
-Write a function named sortMeetingsByDay that takes in an array of objects, each of which represents a meeting happening a particular day of the week, with a particular start time and end time.
+Write a function named sortMeetingsByDay that takes in an array of objects, each of which represents a meeting happening on a particular day of the week, with a particular start time and end time.
 
 Sort the meetings by the day on which they happen, Monday-Friday. It does not matter which order meetings come in on a particular day. For example, if there are two meetings on Monday, it does not matter which comes first.
 ------------------------------------------------------------------------------------------------ */
+
+//DONE IN CLASS
 
 function Meeting(dayOfWeek, start, end) {
   this.dayOfWeek = dayOfWeek;
@@ -232,9 +273,36 @@ const meetings = [
   new Meeting('Friday', '1200', '1345'),
 ];
 
-const sortMeetingsByDay = (arr) => {
+const sortMeetingsByDay = (arr) => {  //given meetings
   // Solution code here...
+  //SHEYNA'S SECOND ATTEMPT
+  //sometimes you can write a key for sorting instead of trying to do a bunch of weird abstraction.
+  const daysOfWeek = {  //created an object
+    Monday: 0,
+    Tuesday: 1,
+    Wednesday: 2,
+    Thursday: 3,
+    Friday: 4,
+  };
+
+  arr.sort((a, b) => {
+    return daysOfWeek[a.dayOfWeek] - daysOfWeek[b.dayOfWeek];
+  });
+
+  return arr;
 };
+
+//SHEYNA'S FIRST ATTEMPT - trying to sort strings
+// arr.sort((a, b) => {
+//   if (a.dayOfWeek.toLowerCase() < b.dayOfWeek.toLowerCase()) {
+//     return -1;  // -1 changes direction because sort shuffles/updates the array in place.
+//   };
+//   if (a.dayOfWeek.toLowerCase() > b.dayOfWeek.toLowerCase()) {
+//     return;
+//   }
+// });
+// return arr;
+// };
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 13 - Stretch Goal
@@ -381,7 +449,7 @@ xdescribe('Testing challenge 11', () => {
   });
 });
 
-xdescribe('Testing challenge 12', () => {
+describe('Testing challenge 12', () => {
   test('It should sort meetings by the day on which they happen', () => {
     const sortedMeetings = sortMeetingsByDay(meetings);
     expect(sortedMeetings.slice(0, 2)).toEqual(expect.arrayContaining([new Meeting('Monday', '0900', '0945'), new Meeting('Monday', '0900', '1000')]));
