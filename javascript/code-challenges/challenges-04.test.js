@@ -48,10 +48,20 @@ Write a function called sortNames that takes an array of names and sorts them al
 
 For example: 'Cat' would come before 'apple'
 ------------------------------------------------------------------------------------------------ */
-
+// sort is performed in place
 const sortNames = (arr) => {
   // Solution code here...
-  return arr.sort(); //SORTS BY UNICODE VALUES.  C=67 AND a=97
+
+  return arr.sort((a, b) => {
+    if (a < b) {  //a is less than b by some ordering criterion
+      console.log(a < b);  //truthy
+      return -1;
+    } else {
+      return;
+    }
+  });
+
+//   return arr.sort(); //SORTS BY UNICODE VALUES.  C=67 AND a=97
 
   //NOPE
   //((a,b) => {a < b ? 1 :-1;})
@@ -63,6 +73,7 @@ const sortNames = (arr) => {
 
   //return arr.sort((a, b) => {
   //return a.toUpperCase() < b.toUpperCase() ? 1 : -1;  //WOULD LEVEL THE UNICODE SORTING CASE
+
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -75,6 +86,7 @@ HINT: Beware... JS default is "Lexical" ordering.
 
 const sortNumbers = (arr) => {
   // Solution code here...
+
   return arr.sort((a, b) => a - b);  //THIS WORKS FOR NUMBERS ON REPLIT AND CODEPEN BUT NOT FOR STRINGS....  WHY?
 
   // let tempArrary = []
@@ -87,7 +99,8 @@ const sortNumbers = (arr) => {
 };
 
 // missing  2 and 12...  because of lexical ordering?
-
+// console.log(`When given ${a}, !(a % 2) is ${!(a % 2)}`);
+// if (!(a % 2)) {  //if odd?  where did I get this from?
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 4
 
@@ -119,7 +132,18 @@ For example, ['Alphabet', 'Zebra', 'alphabet', 'carrot'] is correctly sorted.
 
 const alphabetize = (arr) => {
   // Solution code here...
-  return arr.sort();  //SORTS BY UNICODE VALUES BY DEFAULT SO I JUST COPIED AND PASTED THIS FROM CHALLENGE 2.  WHAT AM I MISSING?  WHAT THAT ALL I WAS SUPPOSED TO DO?
+
+  //copied code from Challenge 2 but reversed the operand
+  return arr.sort((a, b) => {
+    if (a < b) {
+      return -1;
+    } else {
+      return;
+    }
+  });
+  
+  // return arr.sort();  //SORTS BY UNICODE VALUES BY DEFAULT SO I JUST COPIED AND PASTED THIS FROM CHALLENGE 2.  WHAT AM I MISSING?  WHAT THAT ALL I WAS SUPPOSED TO DO?
+
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -137,11 +161,22 @@ Here is an example of the input:
 
 const sortByPrice = (arr) => {  //RECEIVED AN ARRAY OF OBJECTS
   // Solution code here...
+  // console.log(`This is arr.`, arr);
+  // console.log(`This is arr[0].`, arr[0]);
+  // console.log(`This is arr[0].price.`, arr[0].price);
   return arr.sort((a, b) => a.price - b.price);  //RECEIVES TWO OBJECTS FROM THE ARRAY
+  //sort cycles through indexes.
+  //a - b lowest to highest
+  //b - a highest to lowest
+  // if a.price is > b.price sort b before a
+  //console.log(arr[0].price - arr[1].price);  //truthy
+
+  //return arr.sort((a, b) => a.price - b.price);  //RECEIVES TWO OBJECTS FROM THE ARRAY
   // return a.price - b.price;  //RETURNS TRUTHY OR FALSY
   // });
   // return arr.sort((a, b) => a.price - b.price);
   // return a.price < b.price ? -1 : 1;  ///* Return -1 for sort key when item field value is truthy bubbles that item to top of the sorted array. Return 1 pushes item to bottom of sorted array */
+
 };
 
 /* ------------------------------------------------------------------------------------------------

@@ -26,8 +26,11 @@ let starWarsPeople = [
 
 const sortStarWarsCharacters = (starWarsArr) => {
   // Solution code here...
+  return starWarsArr.sort((a, b) => b.height - a.height);
   // sort(thing1, thing2)
   // thing2 height - thing1 height??
+  //big to little b - a
+  //little to big a - b
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -38,7 +41,7 @@ Write a function named removeThree that takes an index and an array. The functio
 
 const removeThree = (idx, arr) => {
   // Solution code here...
-  arr.splice(idx,3);
+  arr.splice(idx, 3);
   return arr;
   // return arr.splice(idx, 3)  //why did this fail?
 
@@ -81,6 +84,7 @@ const howMuchPencil = (str) => {
   // Solution code here...
   //  I could not figure out a good way to manifest an empty ''.
   for (let i = 0; i < str.length; i++) {
+    // console.log(str.slice(0), str.slice(1));  //  'Welcome' 'elcome'
     let temp = str.slice(i);  // this chops the string down
     // console.log(`this is the current slice ${temp}`);
     result.push(temp);
@@ -89,7 +93,6 @@ const howMuchPencil = (str) => {
   }
   // console.log(str.length);  // 7
   //today I learned that .length isn't just for arrays
-  // console.log(str.slice(1), str.slice(2));  //  'elcome' 'lcome'
   result.push('');  //this feels like a super sloppy fix
   // result = result.push('');  // 8  ..not the intended result
   return result;
